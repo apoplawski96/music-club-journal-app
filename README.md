@@ -10,7 +10,7 @@
 </p>
 
 <a href="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png">
-<img align="center" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png" /></a>
+<img align="center" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png" width="200"/></a>
 
 <p align="center">This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
 It's purpose is to store clubs' upcoming events, past events, artists that played there, and to present it in nice way,
@@ -18,6 +18,8 @@ that fit's the club's theme. It's build using MVVM design pattern, Kodein for de
 </br>
 
 ## Technology and Requirements
+
+The app is build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency injection, <b>Firebase</b>, <b>Navigation Component</b> and <b>LiveData</b>.
 
 * <b>Min SDK</b> - 24
 * <b>Kotlin</b> - 1.3.50
