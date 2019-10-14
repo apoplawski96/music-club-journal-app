@@ -9,13 +9,21 @@
   <a href="#contact">Contact</a>
 </p>
 
-<a href="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png">
-<img align="center" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png" width="200"/></a>
-
-<p align="right">This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
+<img align="left" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png" width="256"/></a>
+<p><h1 align="left">General Overview</a></h1></p>
+<p> • This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
 It's purpose is to store clubs' upcoming events, past events, artists that played there, and to present it in nice way,
-that fit's the club's theme. It's build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency injection, <b>Firebase</b>, <b>Navigation Component</b> and <b>LiveData</b>.<p>
-</br>
+that fit's the club's theme. It's build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency injection, <b>Firebase</b>, <b>Navigation Component</b> and <b>LiveData</b></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Technology and Requirements
 
