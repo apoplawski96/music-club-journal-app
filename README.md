@@ -24,6 +24,8 @@ that fit's the club's theme. It's build using <b>MVVM</b> design pattern, <b>Kod
 <br>
 <br>
 <br>
+<br>
+<br>
 
 ## Technology and Requirements
 
