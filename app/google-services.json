@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "439891777221",
+    "firebase_url": "https://stk47app.firebaseio.com",
+    "project_id": "stk47app",
+    "storage_bucket": "stk47app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439891777221:android:e77e43d90a003cff0d82ac",
+        "android_client_info": {
+          "package_name": "com.example.stk47warehousejournalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439891777221-pn97gau6l5vonf3gtvg5v5ud69dvvs18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stk47warehousejournalapp",
+            "certificate_hash": "8b54bee9421cf3b8427bd8d73540d4d7517c009d"
+          }
+        },
+        {
+          "client_id": "439891777221-5rrblcq8geafc5raklnt9nb5qjv7m046.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwBb_aQYe3Nj9GO2m4XX9TM8lJqHcPOds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439891777221-5rrblcq8geafc5raklnt9nb5qjv7m046.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background_pure_lust"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.upcomingevents.UpcomingEventsFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background3"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.8"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/pure_lust_gradient"
+        android:alpha="0.15"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_margin="8dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_return_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/stkLogo"
+                android:layout_width="144dp"
+                android:layout_height="144dp"
+                android:layout_marginTop="54dp"
+                android:layout_marginBottom="36dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/stk_logo_white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="1.5dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_gravity="center"
+                    android:background="@color/appYellow"/>
+
+                <TextView
+                    android:id="@+id/upcomingEvent_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nearest event"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/upcomingEvent_cardView"
+                android:layout_width="match_parent"
+                android:layout_margin="16dp"
+                android:layout_height="164dp"
+                android:layout_marginTop="0dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="@dimen/cardview_default_elevation">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/eventCover_imageView"
+                    android:src="@mipmap/sample_event_cover"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/upcomingEvent_heartIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@android:color/black"
+                            android:alpha="0.5" />
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:src="@mipmap/ic_heart_empty"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintEnd_toStartOf="@id/upcomingEvent_heartIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@android:color/black"
+                            android:alpha="0.5" />
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:src="@drawable/ic_share"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@android:color/black"
+                        android:alpha="0.5"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:paddingHorizontal="8dp"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/date_item" android:layout_width="36dp" android:layout_height="36dp" android:layout_gravity="center"/>
+
+                        <TextView
+                            android:text="Massowanie #2 w. Ros"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/white"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/eventItem_title"
+                            android:layout_height="wrap_content"
+                            android:typeface="monospace"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <TextView
+                            android:text=""
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/white"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/eventItem_genre"
+                            android:layout_height="wrap_content"
+                            android:typeface="monospace"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/upcomingEventLineUp_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Line up"
+                    android:textSize="12sp"
+                    android:layout_marginStart="24dp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:id="@+id/eventLineUp_recyclerView"
+                android:orientation="vertical"/>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="1.5dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_gravity="center"
+                    android:background="@color/appYellow"/>
+
+                <TextView
+                    android:id="@+id/futureEvents_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Future events"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcomingEvents_recyclerView"
+                android:layout_width="match_parent"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
