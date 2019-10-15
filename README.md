@@ -9,7 +9,15 @@
   <a href="#contact">Contact</a>
 </p>
 
-<img align="left" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_app.png" width="256"/></a>
+<p><h1 align="center"><a href="https://github.com/apoplawski96/music-club-journal-app">"STK-47 Warehouse Music Club" Journal App</a></h1></p>
+<img align="center" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_promo.png" /></a>
+<p><h3 align="center">
+  Kotlin •
+  MVVM •
+  Firebase Cloud Firestore •
+  LiveData •
+  Kodein
+</h3></p>
 <p> • This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
 It's purpose is to store clubs' upcoming events, past events, artists that played there, and to present it in nice way,
 that fit's the club's theme. It's build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency injection, <b>Firebase</b>, <b>Navigation Component</b> and <b>LiveData</b></p>
