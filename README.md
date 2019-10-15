@@ -1,6 +1,6 @@
 <a href="https://github.com/apoplawski96/projects-summary/blob/master/assets/header.png"><img src="https://github.com/apoplawski96/projects-summary/blob/master/assets/header.png"></a>
 
-<h1 align="center">STK47 - Warehouse Journal App</h4>
+<h1 align="center">"STK-47 Warehouse Music Club" Journal App</h4>
 
 <p align="center">
   <a href="#technology-and-requirements">Technology and Requirements</a> •
@@ -9,7 +9,6 @@
   <a href="#contact">Contact</a>
 </p>
 
-<p><h1 align="center"><a href="https://github.com/apoplawski96/music-club-journal-app">"STK-47 Warehouse Music Club" Journal App</a></h1></p>
 <img align="center" src="https://github.com/apoplawski96/projects-summary/blob/master/stk_promo.png" /></a>
 <p><h3 align="center">
   Kotlin •
