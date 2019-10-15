@@ -17,25 +17,10 @@
   LiveData •
   Kodein
 </h3></p>
-<p> • This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
+<p align="center"> • This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
 It's purpose is to store clubs' upcoming events, past events, artists that played there, and to present it in nice way,
-that fit's the club's theme. It's build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency injection, <b>Firebase</b>, <b>Navigation Component</b> and <b>LiveData</b></p>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+that fit's the club's theme.</p>
+
 
 ## Technology and Requirements
 
@@ -49,16 +34,16 @@ The app is build using <b>MVVM</b> design pattern, <b>Kodein</b> for dependency 
 
 ## Functionality Overview
 
-IN PROGRESS
+<it>***IN PROGRESS***</it>
 
   
 ## App Demo Showcase
 
-IN PROGRESS
+<it>***IN PROGRESS***</it>
   
 ## Contact
 
 ✉️ a.poplawski96@gmail.com
 <br>
-linkedin.com/in/apoplawski96/
+👷 <a href="http://www.linkedin.com/in/apoplawski96/">linkedin.com/in/apoplawski96/</a>
 
