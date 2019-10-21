@@ -5,9 +5,9 @@
         android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item
-        android:id="@+id/futureListWeatherFragment"
-        android:icon="@drawable/ic_menu"
-        android:title="Menu"/>
+        android:id="@+id/likedEventsFragment"
+        android:icon="@mipmap/ic_heart_empty"
+        android:title="Favourite"/>
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_person_black_24dp"

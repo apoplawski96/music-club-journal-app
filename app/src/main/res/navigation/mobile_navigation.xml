@@ -8,7 +8,13 @@
     <fragment
         android:id="@+id/upcomingEventsFragment"
         android:name="com.example.stk47warehousejournalapp.ui.upcomingevents.UpcomingEventsFragment"
-        android:label="current_weather_fragment"
+        android:label="upcoming_events_fragment"
         tools:layout="@layout/upcoming_events_fragment" />
+
+    <fragment
+        android:id="@+id/likedEventsFragment"
+        android:name="com.example.stk47warehousejournalapp.ui.likedevents.LikedEventsFragment"
+        android:label="liked_events_fragment"
+        />
 
 </navigation>

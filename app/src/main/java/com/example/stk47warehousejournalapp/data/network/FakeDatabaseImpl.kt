@@ -11,7 +11,6 @@ class FakeDatabaseImpl : FakeDatabase {
 
     override fun getUpcomingEvents(): List<Event> {
         populateFakeEventsList()
-        //delay(1000)
         return fakeEvents
     }
 
@@ -22,10 +21,10 @@ class FakeDatabaseImpl : FakeDatabase {
 
     override fun populateFakeEventsList() {
         fakeEvents = listOf(
-            Event("665", "Pandora × STK47 Warehouse Party", "Techno/trance", "22/04", "Krakow", R.mipmap.event_image_1, false),
-            Event("665", "NewOldRave w. Carla Roca", "Acid techno/hard techno", "23/04", "Krakow", R.mipmap.event_image_2, false),
-            Event("665", "We are Radar!", "House/Techno/Dance", "29/04", "Krakow", R.mipmap.event_image_3, false),
-            Event("665", "Hi-Fi DUBtwice #23", "Dub/Bass/Drumn'bass", "30/04", "Krakow", R.mipmap.event_image_4, false))
+            Event( 1, "Pandora × STK47 Warehouse Party", "Techno/trance", "22/04", "Krakow", R.mipmap.event_image_1, false, false),
+            Event( 2, "NewOldRave w. Carla Roca", "Acid techno/hard techno", "23/04", "Krakow", R.mipmap.event_image_2, false, false),
+            Event( 3, "We are Radar!", "House/Techno/Dance", "29/04", "Krakow", R.mipmap.event_image_3, false, false),
+            Event( 4, "Hi-Fi DUBtwice #23", "Dub/Bass/Drumn'bass", "30/04", "Krakow", R.mipmap.event_image_4, false, false))
     }
 
     override fun populateFakeArtistsList() {

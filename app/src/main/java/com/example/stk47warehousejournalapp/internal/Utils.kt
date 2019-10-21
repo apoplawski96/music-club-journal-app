@@ -12,4 +12,5 @@ object Utils {
         + R.raw.background_vid
         )
     }
+
 }

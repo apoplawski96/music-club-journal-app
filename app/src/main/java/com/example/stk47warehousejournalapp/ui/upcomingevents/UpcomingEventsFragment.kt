@@ -2,16 +2,16 @@ package com.example.stk47warehousejournalapp.ui.upcomingevents
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stk47warehousejournalapp.BaseFragment
 import kotlinx.coroutines.launch
-
 import com.example.stk47warehousejournalapp.R
 import com.example.stk47warehousejournalapp.data.model.Artist
 import com.example.stk47warehousejournalapp.data.model.Event
@@ -23,7 +23,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class UpcomingEventsFragment : Fragment(), KodeinAware {
+class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IOnEventItemClickedInterface {
     // Basic
     private val TAG = "UpcomingEventsFragment"
     // ViewModel setup
@@ -37,6 +37,12 @@ class UpcomingEventsFragment : Fragment(), KodeinAware {
     // Adapter
     private var adapter : EventsListAdapter? = null
     private var artistsListAdapter : ArtistsListAdapter? = null
+    private var eventItemClickedInterface : EventsListAdapter.IOnEventItemClickedInterface = this
+
+    companion object {
+        fun newInstance() =
+            UpcomingEventsFragment()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.upcoming_events_fragment, container, false)
@@ -45,8 +51,8 @@ class UpcomingEventsFragment : Fragment(), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(UpcomingEventsViewModel::class.java)
-
         bindUI()
+        setupOnClickEvents()
     }
 
     private fun bindUI(){
@@ -59,7 +65,6 @@ class UpcomingEventsFragment : Fragment(), KodeinAware {
             if (fetchedEvents == null) return@Observer
             upcomingEvents = fetchedEvents
             setupEventsRecyclerView(upcomingEvents!!)
-            //test.text = upcomingEvents!![0].id
         })
         // Setting up dj's list
         viewModel.getFakeArtist().observe(this, Observer { fetchedArtist ->
@@ -69,9 +74,16 @@ class UpcomingEventsFragment : Fragment(), KodeinAware {
         })
     }
 
+    private fun setupOnClickEvents(){
+        stkLogo_imageView.setOnClickListener {
+            viewModel.nukeLikedEventsTable()
+        }
+    }
+
     private fun setupEventsRecyclerView(eventsList : List<Event>){
         upcomingEvents_recyclerView.layoutManager = LinearLayoutManager(MainActivity(), RecyclerView.VERTICAL, false)
-        adapter = EventsListAdapter(eventsList) { eventItem : Event -> eventItemClicked(eventItem)}
+        adapter = EventsListAdapter(eventsList.toMutableList()) { event: Event -> eventItemClicked(event) }
+        adapter!!.setOnItemClickedListener(eventItemClickedInterface)
         upcomingEvents_recyclerView.adapter = adapter
     }
 
@@ -81,16 +93,30 @@ class UpcomingEventsFragment : Fragment(), KodeinAware {
         eventLineUp_recyclerView.adapter = artistsListAdapter
     }
 
-    companion object {
-        fun newInstance() =
-            UpcomingEventsFragment()
+    private fun eventItemClicked(event : Event){
+        Toast.makeText(activity, "${event.title} event clicked", Toast.LENGTH_SHORT).show()
     }
 
-    fun eventItemClicked(event : Event){
-
+    override fun onEventLiked(event: Event, view : View) {
+        if (!event.isLiked){
+            viewModel.addLikedEvent(event)
+            Toast.makeText(activity, "Added to liked events!", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.removeLikedEvent(event)
+            Toast.makeText(activity, "Event removed from liked", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    fun artistItemClicked(artist : Artist){
+    override fun onEventShared(event: Event, view: View) { }
+    private fun artistItemClicked(artist : Artist){ }
 
+    private fun logDatabaseState(){
+        launch {
+            context?.let {
+                val likedEventsFetched = viewModel.getLikedEvents()
+                Toast.makeText(activity, likedEventsFetched.size.toString(), Toast.LENGTH_SHORT).show()
+                Log.d("TAG", likedEventsFetched.size.toString())
+            }
+        }
     }
 }
