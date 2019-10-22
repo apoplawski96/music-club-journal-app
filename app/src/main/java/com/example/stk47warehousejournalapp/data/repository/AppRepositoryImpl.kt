@@ -12,8 +12,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-const val EVENTS = "events"
-
 class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppRepository {
 
     val TAG = "FIREBASE_REPOSITORY"

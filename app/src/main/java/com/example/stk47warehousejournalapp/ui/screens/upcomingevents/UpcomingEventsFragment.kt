@@ -27,21 +27,24 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IOnEventItemClickedInterface {
-    // Basic
-    private val TAG = "UpcomingEventsFragment"
+
     // ViewModel setup
     private val viewModelFactory: UpcomingEventsViewModelFactory by instance()
     private lateinit var viewModel: UpcomingEventsViewModel
+
     // Kodein
     override val kodein by closestKodein()
+
     // Collections
     private var upcomingEvents : List<Event>? = null
     private var eventsLineUp : List<Artist>? = null
     private var userLikedEvents : List<Event>? = null
+
     // Adapter
     private var adapter : EventsListAdapter? = null
     private var artistsListAdapter : ArtistsListAdapter? = null
     private var eventItemClickedInterface : EventsListAdapter.IOnEventItemClickedInterface = this
+
     // RxJava
     private val disposable = CompositeDisposable()
 
@@ -62,23 +65,14 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     }
 
     private fun bindUI(){
-        // Setting up events list
-        /*viewModel.getUpcomingEvents().observe(this, Observer { fetchedEvents ->
-            upcomingEvents = fetchedEvents
-            test.text = upcomingEvents!![0].id
-        })*/
-        viewModel.getFakeEvents().observe(this, Observer { fetchedEvents ->
-            if (fetchedEvents == null) return@Observer
+        fetchUpcomingEvents()
+    }
+
+    private fun fetchUpcomingEvents(){
+        viewModel.getUpcomingEvents().observe(this, Observer { fetchedEvents ->
             upcomingEvents = fetchedEvents
             setupEventsRecyclerView(upcomingEvents!!)
         })
-        // Setting up dj's list
-        viewModel.getFakeArtist().observe(this, Observer { fetchedArtist ->
-            if (fetchedArtist == null) return@Observer
-            eventsLineUp = fetchedArtist
-            setupArtistsListRecyclerView(eventsLineUp!!)
-        })
-
     }
 
     private fun setupOnClickEvents(){
@@ -114,7 +108,7 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     }
 
     override fun onEventLiked(event: Event, view : View) {
-        if (event.isLiked != null && event.isLiked){
+        if (event.isLiked){
             viewModel.addLikedEvent(event)
             Toast.makeText(activity, "Added to liked events!", Toast.LENGTH_SHORT).show()
         } else {

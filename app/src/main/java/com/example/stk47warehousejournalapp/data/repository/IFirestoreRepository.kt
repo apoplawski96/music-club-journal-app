@@ -2,8 +2,9 @@ package com.example.stk47warehousejournalapp.data.repository
 
 import com.example.stk47warehousejournalapp.data.model.Event
 import com.example.stk47warehousejournalapp.data.model.Result
+import com.google.firebase.firestore.CollectionReference
 
 interface IFirestoreRepository {
-    suspend fun getAllEvents() : Result<Exception, List<Event>>
+    fun getAllEvents() : CollectionReference
     suspend fun getUpcomingEvents() : Result<Exception, List<Event>>
 }

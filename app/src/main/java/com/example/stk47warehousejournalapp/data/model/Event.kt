@@ -10,18 +10,18 @@ data class Event(
     @SerializedName("id")
     var id : String = "",
     @SerializedName("title")
-    val title : String,
+    val title : String = "",
     @SerializedName("genre")
-    val genre : String,
+    val genre : String = "",
     @SerializedName("date")
-    val date : String,
+    val date : String = "",
     @SerializedName("location")
-    val location : String,
-    val eventImageResource : Int,
+    val location : String = "",
+    val eventImageResource : Int = 0,
     @SerializedName("is_past")
-    val isPast : Boolean,
+    val isPast : Boolean = false,
     @SerializedName("is_liked")
-    val isLiked : Boolean
+    val isLiked : Boolean = false
 )
 
 /*data class Event(val id : String? = null,

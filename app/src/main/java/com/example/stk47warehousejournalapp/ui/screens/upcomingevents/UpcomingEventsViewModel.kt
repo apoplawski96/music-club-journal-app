@@ -9,26 +9,19 @@ import com.example.stk47warehousejournalapp.data.model.Artist
 import com.example.stk47warehousejournalapp.data.model.Event
 import com.example.stk47warehousejournalapp.data.network.FakeDatabase
 import com.example.stk47warehousejournalapp.data.repository.AppRepository
+import com.example.stk47warehousejournalapp.data.repository.IFirestoreRepository
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 import io.reactivex.Observable
 import kotlinx.coroutines.launch
 
-class UpcomingEventsViewModel(private val appRepository: AppRepository, private val fakeDb : FakeDatabase) : ViewModel() {
+class UpcomingEventsViewModel(private val appRepository: AppRepository, private val firestoreRepository : IFirestoreRepository) : ViewModel() {
     private  val TAG = "UpcomingEventsViewModel"
     // Collections
     private var upcomingEvents : MutableLiveData<List<Event>> = MutableLiveData()
     private var artistsLineUpList : MutableLiveData<List<Artist>> = MutableLiveData()
 
-    fun getFakeEvents(): LiveData<List<Event>>{
-        upcomingEvents.value = fakeDb.getUpcomingEvents()
-        return upcomingEvents
-    }
-
-    fun getFakeArtist(): LiveData<List<Artist>>{
-        artistsLineUpList.value = fakeDb.getArtistsList()
-        return artistsLineUpList
-    }
+    // Local db
 
     fun addLikedEvent(event : Event) = viewModelScope.launch {
         appRepository.addLikedEvent(event)
@@ -50,10 +43,12 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         appRepository.nukeLikedEventsTable()
     }
 
+    // Firebase db
+
     fun getUpcomingEvents(): LiveData<List<Event>>{
         val upcomingEventsList : MutableList<Event> = mutableListOf()
 
-        appRepository.getAllEvents().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+        firestoreRepository.getAllEvents().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
                 upcomingEvents.value = null
