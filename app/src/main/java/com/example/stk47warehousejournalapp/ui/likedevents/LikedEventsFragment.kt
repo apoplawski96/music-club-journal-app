@@ -57,14 +57,14 @@ class LikedEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IOnEv
 
     private fun bindUI(){
         setupLikedEventsRecyclerView()
+        fetchLikedEvents()
     }
 
     private fun setupLikedEventsRecyclerView(){
         likedEvents_recyclerView.layoutManager = LinearLayoutManager(MainActivity(), RecyclerView.VERTICAL, false)
-        adapter = EventsListAdapter(mutableListOf(Event( 1, "Pandora × STK47 Warehouse Party", "Techno/trance", "22/04", "Krakow", R.mipmap.event_image_1, false, false))) { event: Event -> eventItemClicked(event) }
+        adapter = EventsListAdapter(mutableListOf()) { event: Event -> eventItemClicked(event) }
         adapter!!.setOnItemClickedListener(eventItemClickedInterface)
         likedEvents_recyclerView.adapter = adapter
-        fetchLikedEvents()
     }
 
     private fun fetchLikedEvents(){

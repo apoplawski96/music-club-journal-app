@@ -20,6 +20,6 @@ class LikedEventsViewModel() : ViewModel() {
     }
 
     fun getLikedEvents() : Observable<List<Event>>{
-        return mAppRepository!!.getLikedEventsInObservable()
+        return mAppRepository.getLikedEventsInObservable()
     }
 }

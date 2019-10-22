@@ -24,7 +24,9 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int { return eventsList.size }
+    override fun getItemCount(): Int {
+        return eventsList.size
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { holder.bind(eventsList[position], clickListener, mListener!!) }
 
@@ -53,6 +55,5 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
             if (eventItem.isLiked) onClickInterface.setHeartIconChecked(itemView)
             else onClickInterface.setHeartIconEmpty(itemView)
         }
-
     }
 }

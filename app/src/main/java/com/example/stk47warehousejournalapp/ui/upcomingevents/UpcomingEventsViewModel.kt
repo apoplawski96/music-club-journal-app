@@ -18,7 +18,6 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
     private  val TAG = "UpcomingEventsViewModel"
     // Collections
     private var upcomingEvents : MutableLiveData<List<Event>> = MutableLiveData()
-    private var likedEvents : MutableLiveData<List<Event>> = MutableLiveData()
     private var artistsLineUpList : MutableLiveData<List<Artist>> = MutableLiveData()
 
     fun getFakeEvents(): LiveData<List<Event>>{
