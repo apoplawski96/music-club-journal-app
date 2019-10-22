@@ -1,28 +1,22 @@
-package com.example.stk47warehousejournalapp.ui.likedevents
+package com.example.stk47warehousejournalapp.ui.screens.likedevents
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stk47warehousejournalapp.BaseFragment
+import com.example.stk47warehousejournalapp.internal.BaseFragment
 
 import com.example.stk47warehousejournalapp.R
-import com.example.stk47warehousejournalapp.data.model.Artist
 import com.example.stk47warehousejournalapp.data.model.Event
 import com.example.stk47warehousejournalapp.ui.MainActivity
-import com.example.stk47warehousejournalapp.ui.adapters.ArtistsListAdapter
 import com.example.stk47warehousejournalapp.ui.adapters.EventsListAdapter
-import com.example.stk47warehousejournalapp.ui.upcomingevents.UpcomingEventsViewModel
-import com.example.stk47warehousejournalapp.ui.upcomingevents.UpcomingEventsViewModelFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.liked_events_fragment.*
-import kotlinx.android.synthetic.main.upcoming_events_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance

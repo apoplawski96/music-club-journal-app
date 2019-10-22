@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background_pure_lust"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.upcomingevents.UpcomingEventsFragment">
+    tools:context=".ui.screens.upcomingevents.UpcomingEventsFragment">
 
     <ImageView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp.ui.upcomingevents
+package com.example.stk47warehousejournalapp.ui.screens.upcomingevents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

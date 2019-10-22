@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp
+package com.example.stk47warehousejournalapp.internal
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

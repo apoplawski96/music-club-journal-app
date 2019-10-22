@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp.ui.upcomingevents
+package com.example.stk47warehousejournalapp.ui.screens.upcomingevents
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stk47warehousejournalapp.BaseFragment
+import com.example.stk47warehousejournalapp.internal.BaseFragment
 import kotlinx.coroutines.launch
 import com.example.stk47warehousejournalapp.R
 import com.example.stk47warehousejournalapp.data.model.Artist

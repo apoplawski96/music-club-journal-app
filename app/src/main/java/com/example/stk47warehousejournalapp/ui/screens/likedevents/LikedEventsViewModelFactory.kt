@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp.ui.likedevents
+package com.example.stk47warehousejournalapp.ui.screens.likedevents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

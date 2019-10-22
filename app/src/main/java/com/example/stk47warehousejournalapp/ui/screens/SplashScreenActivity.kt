@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp.ui
+package com.example.stk47warehousejournalapp.ui.screens
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity

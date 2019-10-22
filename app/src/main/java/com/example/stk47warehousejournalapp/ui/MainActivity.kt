@@ -2,13 +2,11 @@ package com.example.stk47warehousejournalapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.stk47warehousejournalapp.R
-import com.example.stk47warehousejournalapp.ui.upcomingevents.UpcomingEventsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

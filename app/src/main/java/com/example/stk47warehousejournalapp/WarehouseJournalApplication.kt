@@ -6,8 +6,8 @@ import com.example.stk47warehousejournalapp.data.network.FakeDatabase
 import com.example.stk47warehousejournalapp.data.network.FakeDatabaseImpl
 import com.example.stk47warehousejournalapp.data.repository.AppRepository
 import com.example.stk47warehousejournalapp.data.repository.AppRepositoryImpl
-import com.example.stk47warehousejournalapp.ui.likedevents.LikedEventsViewModelFactory
-import com.example.stk47warehousejournalapp.ui.upcomingevents.UpcomingEventsViewModelFactory
+import com.example.stk47warehousejournalapp.ui.screens.likedevents.LikedEventsViewModelFactory
+import com.example.stk47warehousejournalapp.ui.screens.upcomingevents.UpcomingEventsViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
