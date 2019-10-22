@@ -10,6 +10,7 @@ import io.reactivex.Observable
 
 @Dao
 interface UserLocalDataDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addLikedEvent(event : Event)
 
@@ -24,4 +25,8 @@ interface UserLocalDataDao {
 
     @Query("DELETE FROM liked_event WHERE id is 2")
     suspend fun deleteLikedEvent()
+
+    @Query("SELECT id FROM liked_event")
+    fun getLikedEventsIds() : Observable<List<String>>
+
 }

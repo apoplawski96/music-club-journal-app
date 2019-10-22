@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class Event(
     @PrimaryKey
     @SerializedName("id")
-    var id : Int? = null,
+    var id : String = "",
     @SerializedName("title")
     val title : String,
     @SerializedName("genre")

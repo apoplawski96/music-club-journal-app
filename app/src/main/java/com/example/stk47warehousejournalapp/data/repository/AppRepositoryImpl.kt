@@ -37,7 +37,7 @@ class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppR
         userLocalDataDao.addLikedEvent(event)
     }
 
-    override fun getLikedEventsInObservable(): Observable<List<Event>> {
+    override fun getUserLikedEvents(): Observable<List<Event>> {
         return userLocalDataDao.getLikedEventsInObservable()
     }
 

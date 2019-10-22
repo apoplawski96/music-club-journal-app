@@ -42,8 +42,8 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         return appRepository.getLikedEvents()
     }
 
-    fun getLikedEventsInObservable() : Observable<List<Event>> {
-        return appRepository.getLikedEventsInObservable()
+    fun getUserLikedEvents() : Observable<List<Event>> {
+        return appRepository.getUserLikedEvents()
     }
 
     fun nukeLikedEventsTable() = viewModelScope.launch {

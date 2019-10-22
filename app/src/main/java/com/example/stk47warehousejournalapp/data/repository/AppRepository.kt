@@ -7,11 +7,21 @@ import com.google.firebase.firestore.Query
 import io.reactivex.Observable
 
 interface AppRepository {
+
+    // Firebase
+
     fun getUpcomingEvents() : Query
+
     fun getAllEvents() : CollectionReference
+
+    // Room
+
+    fun getUserLikedEvents() : Observable<List<Event>>
+
+    // Artifacts?
+
     suspend fun getLikedEvents() : List<Event>
     suspend fun addLikedEvent(event : Event)
-    fun getLikedEventsInObservable() : Observable<List<Event>>
     suspend fun nukeLikedEventsTable()
     suspend fun removeLikedEvent(event : Event)
 }

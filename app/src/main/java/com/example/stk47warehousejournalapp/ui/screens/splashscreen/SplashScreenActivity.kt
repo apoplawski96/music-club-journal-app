@@ -1,4 +1,4 @@
-package com.example.stk47warehousejournalapp.ui.screens
+package com.example.stk47warehousejournalapp.ui.screens.splashscreen
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
