@@ -70,7 +70,7 @@ class LikedEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IOnEv
             })
     }
 
-    override fun onEventLiked(event: Event, view: View) { }
+    override fun onEventHeartIconClicked(event: Event, view: View) { }
     override fun onEventShared(event: Event, view: View) { }
     private fun eventItemClicked(event : Event){ }
 }

@@ -1,10 +1,7 @@
 package com.example.stk47warehousejournalapp.data.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.stk47warehousejournalapp.data.model.Event
 import io.reactivex.Observable
 
@@ -19,6 +16,9 @@ interface UserLocalDataDao {
 
     @Query("SELECT * FROM liked_event")
     fun getUserLikedEventsAsObservable() : Observable<List<Event>>
+
+    @Delete
+    fun deleteLikedEvent(event: Event)
 
     @Query("DELETE FROM liked_event")
     suspend fun nukeLikedEventsTable()

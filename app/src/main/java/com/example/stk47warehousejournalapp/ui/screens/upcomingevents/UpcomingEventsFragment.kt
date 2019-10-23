@@ -29,6 +29,8 @@ import org.kodein.di.generic.instance
 
 class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IOnEventItemClickedInterface {
 
+    val TAG = "UpcomingEventsFragment"
+
     // ViewModel setup
     private val viewModelFactory: UpcomingEventsViewModelFactory by instance()
     private lateinit var viewModel: UpcomingEventsViewModel
@@ -93,9 +95,18 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
         Toast.makeText(activity, "${event.title} event clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onEventLiked(event: Event, view : View) {
-        viewModel.addLikedEvent(event)
-        Toast.makeText(activity, "Added to liked events", Toast.LENGTH_SHORT).show()
+    override fun onEventHeartIconClicked(event: Event, view : View) {
+        if (!event.isLiked){
+            Log.d(TAG, "HeartClick - addEvent")
+            viewModel.addLikedEvent(event)
+            eventItemClickedInterface.setHeartIconChecked(view)
+            Toast.makeText(activity, "Added to liked events", Toast.LENGTH_SHORT).show()
+        } else if (event.isLiked) {
+            Log.d(TAG, "HeartClick remove event")
+            viewModel.removeLikedEvent(event)
+            eventItemClickedInterface.setHeartIconEmpty(view)
+            Toast.makeText(activity, "Event removed from liked", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onEventShared(event: Event, view: View) { }

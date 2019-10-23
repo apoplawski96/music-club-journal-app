@@ -13,7 +13,7 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
     private var mListener : IOnEventItemClickedInterface? = null
 
     interface IOnEventItemClickedInterface{
-        fun onEventLiked(event : Event, view : View)
+        fun onEventHeartIconClicked(event : Event, view : View)
         fun onEventShared(event : Event, view : View)
         fun setHeartIconChecked(view : View){ view.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_full) }
         fun setHeartIconEmpty(view : View){ view.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_empty) }
@@ -46,7 +46,7 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
         fun bind (eventItem : Event, clickListener: (Event) -> Unit, onClickInterface: IOnEventItemClickedInterface){
             // OnClicks setup
             itemView.setOnClickListener { clickListener(eventItem) }
-            itemView.upcomingEvent_heartIcon.setOnClickListener { if (adapterPosition != RecyclerView.NO_POSITION){ onClickInterface.onEventLiked(eventItem, itemView) } }
+            itemView.upcomingEvent_heartIcon.setOnClickListener { if (adapterPosition != RecyclerView.NO_POSITION){ onClickInterface.onEventHeartIconClicked(eventItem, itemView) } }
             // Basic data binding
             itemView.eventCover_imageView.setImageResource(eventItem.eventImageResource)
             itemView.eventItem_title.text = eventItem.title

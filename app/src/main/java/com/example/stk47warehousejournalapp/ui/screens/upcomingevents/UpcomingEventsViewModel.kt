@@ -20,12 +20,18 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
     private var remoteFetchedEventsTempList = MutableLiveData<List<Event>>()
     private var localUserLikedEventsTempList = MutableLiveData<List<Event>>()
 
-    fun addLikedEvent(event: Event){
+    fun addLikedEvent(event : Event){
+        Log.d(TAG, "Event added to local db")
         appRepository.addLikedEvent(event)
     }
 
-    fun observeOnData(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
+    fun removeLikedEvent(event : Event){
+        Log.d(TAG, "Event deleted from local db")
+        appRepository.deleteLikedEvent(event)
+    }
 
+    fun observeOnData(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
+        Log.d(TAG, "observeOnData() function called")
         upcomingEventsOutputData.observe(owner, observer)
 
         // Fetching data from Firebase db
@@ -49,22 +55,19 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
 
     private fun fetchIsLikedValueToRemoteEvents(){
         val outputEventsList = mutableListOf<Event>()
+        Log.d(TAG, "Gluing function called")
 
         if (remoteFetchedEventsTempList.value != null && localUserLikedEventsTempList.value != null){
             for (remoteEvent in remoteFetchedEventsTempList.value!!){
-                Log.d(TAG, "Remote event entered: ${remoteEvent.title}")
+                remoteEvent.isLiked = false
+                //Log.d(TAG, "Remote event entered: ${remoteEvent.title}")
                 for (localEvent in localUserLikedEventsTempList.value!!){
                     if (remoteEvent.id == localEvent.id){
-                        Log.d(TAG, "Matching local event found: ${localEvent.id} = ${remoteEvent.id}")
                         remoteEvent.isLiked = true
                     }
                 }
                 Log.d(TAG, "Output event added: ${remoteEvent.title}, isLiked:${remoteEvent.isLiked}")
                 outputEventsList.add(remoteEvent)
-            }
-
-            for (outputItem in outputEventsList){
-                Log.d(TAG, outputItem.toString())
             }
 
             upcomingEventsOutputData.postValue(outputEventsList)

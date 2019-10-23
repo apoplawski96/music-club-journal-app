@@ -12,6 +12,8 @@ interface AppRepository {
 
     fun getUserLikedEventsAsObservable() : Observable<List<Event>>
 
-    fun addLikedEvent(event: Event)
+    fun addLikedEvent(event : Event)
+
+    fun deleteLikedEvent(event : Event)
 
 }

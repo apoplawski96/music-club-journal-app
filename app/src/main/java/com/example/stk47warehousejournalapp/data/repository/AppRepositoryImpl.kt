@@ -28,4 +28,11 @@ class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppR
             userLocalDataDao.addLikedEvent(event)
         }
     }
+
+    override fun deleteLikedEvent(event: Event) {
+        GlobalScope.launch(Dispatchers.IO) {
+            userLocalDataDao.deleteLikedEvent(event)
+        }
+    }
+
 }
