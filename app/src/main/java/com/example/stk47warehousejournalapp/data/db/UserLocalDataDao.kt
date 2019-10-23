@@ -15,9 +15,6 @@ interface UserLocalDataDao {
     fun addLikedEvent(event : Event)
 
     @Query("SELECT * FROM liked_event")
-    fun getUserLikedEvents() : List<Event>
-
-    @Query("SELECT * FROM liked_event")
     fun getUserLikedEventsAsLiveData() : LiveData<List<Event>>
 
     @Query("SELECT * FROM liked_event")

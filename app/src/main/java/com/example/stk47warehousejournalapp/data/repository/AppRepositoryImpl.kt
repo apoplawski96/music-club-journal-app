@@ -15,17 +15,11 @@ import kotlinx.coroutines.withContext
 
 class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppRepository {
 
-    override fun getUserLikedEventsAsLiveData(): LiveData<List<Event>> {
-        val userLikedEvents = MutableLiveData<List<Event>>()
-        userLikedEvents.postValue(userLocalDataDao.getUserLikedEvents())
-        return userLikedEvents
-    }
-
     override fun getUserLikedEventsAsObservable(): Observable<List<Event>> {
         return userLocalDataDao.getUserLikedEventsAsObservable()
     }
 
-    override fun testGetEvents(): LiveData<List<Event>> {
+    override fun getUserLikedEventsAsLiveData(): LiveData<List<Event>> {
         return userLocalDataDao.getUserLikedEventsAsLiveData()
     }
 

@@ -38,7 +38,7 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         }
 
         // Fetching data from local Room db
-        upcomingEventsOutputData.addSource(appRepository.testGetEvents()) { localUserLikedEvents ->
+        upcomingEventsOutputData.addSource(appRepository.getUserLikedEventsAsLiveData()) { localUserLikedEvents ->
             if (localUserLikedEvents != null){
                 Log.d(TAG, "Local events fetched")
                 localUserLikedEventsTempList.value = localUserLikedEvents

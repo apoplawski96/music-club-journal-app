@@ -8,12 +8,10 @@ import io.reactivex.Observable
 
 interface AppRepository {
 
-    fun getUserLikedEventsAsObservable() : Observable<List<Event>>
-
     fun getUserLikedEventsAsLiveData() : LiveData<List<Event>>
 
-    fun addLikedEvent(event: Event)
+    fun getUserLikedEventsAsObservable() : Observable<List<Event>>
 
-    fun testGetEvents() : LiveData<List<Event>>
+    fun addLikedEvent(event: Event)
 
 }
