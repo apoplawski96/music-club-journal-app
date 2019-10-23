@@ -52,8 +52,8 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
             itemView.eventItem_title.text = eventItem.title
             itemView.eventItem_genre.text = eventItem.genre
             // Setting up proper heart icon
-            if (eventItem.isLiked) onClickInterface.setHeartIconChecked(itemView)
-            else onClickInterface.setHeartIconEmpty(itemView)
+            if (eventItem.isLiked) itemView.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_full)
+            else itemView.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_empty)
         }
     }
 }

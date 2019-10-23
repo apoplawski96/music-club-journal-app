@@ -20,6 +20,10 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
     private var remoteFetchedEventsTempList = MutableLiveData<List<Event>>()
     private var localUserLikedEventsTempList = MutableLiveData<List<Event>>()
 
+    fun addLikedEvent(event: Event){
+        appRepository.addLikedEvent(event)
+    }
+
     fun observeOnData(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
 
         upcomingEventsOutputData.observe(owner, observer)
@@ -27,27 +31,43 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         // Fetching data from Firebase db
         upcomingEventsOutputData.addSource(firestoreRepository.getAllEvents()) { remoteFetchedEvents ->
             if (remoteFetchedEvents != null){
+                Log.d(TAG, "Remote events fetched")
                 remoteFetchedEventsTempList.value = remoteFetchedEvents
                 fetchIsLikedValueToRemoteEvents()
             }
         }
 
         // Fetching data from local Room db
-        lazy {
-            upcomingEventsOutputData.addSource(appRepository.getUserLikedEventsAsLiveData()) { localUserLikedEvents ->
-                if (localUserLikedEvents != null){
-                    localUserLikedEventsTempList.value = localUserLikedEvents
-                    fetchIsLikedValueToRemoteEvents()
-                }
+        upcomingEventsOutputData.addSource(appRepository.testGetEvents()) { localUserLikedEvents ->
+            if (localUserLikedEvents != null){
+                Log.d(TAG, "Local events fetched")
+                localUserLikedEventsTempList.value = localUserLikedEvents
+                fetchIsLikedValueToRemoteEvents()
             }
         }
     }
 
-    fun addLikedEvent(event: Event){
-        appRepository.addLikedEvent(event)
-    }
-
     private fun fetchIsLikedValueToRemoteEvents(){
-        upcomingEventsOutputData.postValue(remoteFetchedEventsTempList.value)
+        val outputEventsList = mutableListOf<Event>()
+
+        if (remoteFetchedEventsTempList.value != null && localUserLikedEventsTempList.value != null){
+            for (remoteEvent in remoteFetchedEventsTempList.value!!){
+                Log.d(TAG, "Remote event entered: ${remoteEvent.title}")
+                for (localEvent in localUserLikedEventsTempList.value!!){
+                    if (remoteEvent.id == localEvent.id){
+                        Log.d(TAG, "Matching local event found: ${localEvent.id} = ${remoteEvent.id}")
+                        remoteEvent.isLiked = true
+                    }
+                }
+                Log.d(TAG, "Output event added: ${remoteEvent.title}, isLiked:${remoteEvent.isLiked}")
+                outputEventsList.add(remoteEvent)
+            }
+
+            for (outputItem in outputEventsList){
+                Log.d(TAG, outputItem.toString())
+            }
+
+            upcomingEventsOutputData.postValue(outputEventsList)
+        }
     }
 }

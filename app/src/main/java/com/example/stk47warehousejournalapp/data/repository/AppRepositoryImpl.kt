@@ -25,6 +25,10 @@ class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppR
         return userLocalDataDao.getUserLikedEventsAsObservable()
     }
 
+    override fun testGetEvents(): LiveData<List<Event>> {
+        return userLocalDataDao.getUserLikedEventsAsLiveData()
+    }
+
     override fun addLikedEvent(event: Event) {
         GlobalScope.launch(Dispatchers.IO) {
             userLocalDataDao.addLikedEvent(event)

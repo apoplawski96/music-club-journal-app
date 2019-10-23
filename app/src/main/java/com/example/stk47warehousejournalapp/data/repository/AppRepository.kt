@@ -14,4 +14,6 @@ interface AppRepository {
 
     fun addLikedEvent(event: Event)
 
+    fun testGetEvents() : LiveData<List<Event>>
+
 }
