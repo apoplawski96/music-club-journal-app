@@ -21,7 +21,7 @@ data class Event(
     @SerializedName("is_past")
     val isPast : Boolean = false,
     @SerializedName("is_liked")
-    val isLiked : Boolean = false
+    var isLiked : Boolean = false
 )
 
 /*data class Event(val id : String? = null,

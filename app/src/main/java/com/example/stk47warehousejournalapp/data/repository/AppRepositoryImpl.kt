@@ -1,6 +1,7 @@
 package com.example.stk47warehousejournalapp.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.stk47warehousejournalapp.data.db.UserLocalDataDao
 import com.example.stk47warehousejournalapp.data.model.Event
 import com.google.firebase.firestore.CollectionReference
@@ -14,37 +15,19 @@ import kotlinx.coroutines.withContext
 
 class AppRepositoryImpl (private val userLocalDataDao : UserLocalDataDao) : AppRepository {
 
-    val TAG = "FIREBASE_REPOSITORY"
-    val db = FirebaseFirestore.getInstance()
-
-    override fun getUpcomingEvents() : Query {
-        var ref = db.collection(EVENTS).whereEqualTo("asd", "asd")
-        return ref
+    override fun getUserLikedEventsAsLiveData(): LiveData<List<Event>> {
+        val userLikedEvents = MutableLiveData<List<Event>>()
+        userLikedEvents.postValue(userLocalDataDao.getUserLikedEvents())
+        return userLikedEvents
     }
 
-    override fun getAllEvents() : CollectionReference {
-        var ref = db.collection(EVENTS)
-        return ref
+    override fun getUserLikedEventsAsObservable(): Observable<List<Event>> {
+        return userLocalDataDao.getUserLikedEventsAsObservable()
     }
 
-    override suspend fun getLikedEvents(): List<Event> {
-        return userLocalDataDao.getLikedEvents()
+    override fun addLikedEvent(event: Event) {
+        GlobalScope.launch(Dispatchers.IO) {
+            userLocalDataDao.addLikedEvent(event)
+        }
     }
-
-    override suspend fun addLikedEvent(event : Event){
-        userLocalDataDao.addLikedEvent(event)
-    }
-
-    override fun getUserLikedEvents(): Observable<List<Event>> {
-        return userLocalDataDao.getLikedEventsInObservable()
-    }
-
-    override suspend fun nukeLikedEventsTable() {
-        userLocalDataDao.nukeLikedEventsTable()
-    }
-
-    override suspend fun removeLikedEvent(event: Event) {
-        userLocalDataDao.deleteLikedEvent()
-    }
-
 }

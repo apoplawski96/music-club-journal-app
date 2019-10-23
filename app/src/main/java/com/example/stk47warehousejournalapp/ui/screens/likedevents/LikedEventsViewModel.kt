@@ -12,17 +12,11 @@ class LikedEventsViewModel() : ViewModel() {
 
     private lateinit var mAppRepository: AppRepository
 
-    private val disposable = CompositeDisposable()
-
     constructor(appRepository: AppRepository) : this(){
         mAppRepository = appRepository
     }
 
-    fun addLikedEvent (event : Event) = viewModelScope.launch {
-        mAppRepository.addLikedEvent(event)
-    }
-
     fun getLikedEvents() : Observable<List<Event>>{
-        return mAppRepository.getUserLikedEvents()
+        return mAppRepository.getUserLikedEventsAsObservable()
     }
 }

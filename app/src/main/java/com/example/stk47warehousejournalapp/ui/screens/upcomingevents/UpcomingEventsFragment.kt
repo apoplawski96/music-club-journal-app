@@ -20,6 +20,7 @@ import com.example.stk47warehousejournalapp.ui.adapters.ArtistsListAdapter
 import com.example.stk47warehousejournalapp.ui.adapters.EventsListAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.toObservable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.upcoming_events_fragment.*
 import org.kodein.di.KodeinAware
@@ -38,15 +39,11 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     // Collections
     private var upcomingEvents : List<Event>? = null
     private var eventsLineUp : List<Artist>? = null
-    private var userLikedEvents : List<Event>? = null
 
     // Adapter
     private var adapter : EventsListAdapter? = null
     private var artistsListAdapter : ArtistsListAdapter? = null
     private var eventItemClickedInterface : EventsListAdapter.IOnEventItemClickedInterface = this
-
-    // RxJava
-    private val disposable = CompositeDisposable()
 
     companion object {
         fun newInstance() =
@@ -65,34 +62,23 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     }
 
     private fun bindUI(){
+        setupEventsRecyclerView()
         fetchUpcomingEvents()
     }
 
-    private fun fetchUpcomingEvents(){
-        viewModel.getUpcomingEvents().observe(this, Observer { fetchedEvents ->
+    private fun fetchUpcomingEvents() {
+        viewModel.observeOnData(this, Observer { fetchedEvents ->
+            if (fetchedEvents == null) return@Observer
             upcomingEvents = fetchedEvents
-            setupEventsRecyclerView(upcomingEvents!!)
+            adapter!!.setItems(upcomingEvents!!)
         })
     }
 
-    private fun setupOnClickEvents(){
-        stkLogo_imageView.setOnClickListener {
-            viewModel.nukeLikedEventsTable()
-        }
-    }
+    private fun setupOnClickEvents(){ }
 
-    private fun fetchLikedEvents(){
-        disposable.add(viewModel.getUserLikedEvents()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{ events ->
-                userLikedEvents = events
-            })
-    }
-
-    private fun setupEventsRecyclerView(eventsList : List<Event>){
+    private fun setupEventsRecyclerView(){
         upcomingEvents_recyclerView.layoutManager = LinearLayoutManager(MainActivity(), RecyclerView.VERTICAL, false)
-        adapter = EventsListAdapter(eventsList.toMutableList()) { event: Event -> eventItemClicked(event) }
+        adapter = EventsListAdapter(mutableListOf()) { event: Event -> eventItemClicked(event) }
         adapter!!.setOnItemClickedListener(eventItemClickedInterface)
         upcomingEvents_recyclerView.adapter = adapter
     }
@@ -108,13 +94,8 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     }
 
     override fun onEventLiked(event: Event, view : View) {
-        if (event.isLiked){
-            viewModel.addLikedEvent(event)
-            Toast.makeText(activity, "Added to liked events!", Toast.LENGTH_SHORT).show()
-        } else {
-            viewModel.removeLikedEvent(event)
-            Toast.makeText(activity, "Event removed from liked", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.addLikedEvent(event)
+        Toast.makeText(activity, "Added to liked events", Toast.LENGTH_SHORT).show()
     }
 
     override fun onEventShared(event: Event, view: View) { }

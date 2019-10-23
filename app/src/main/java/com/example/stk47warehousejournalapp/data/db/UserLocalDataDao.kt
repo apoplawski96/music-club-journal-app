@@ -12,21 +12,15 @@ import io.reactivex.Observable
 interface UserLocalDataDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addLikedEvent(event : Event)
+    fun addLikedEvent(event : Event)
 
     @Query("SELECT * FROM liked_event")
-    suspend fun getLikedEvents() : List<Event>
+    fun getUserLikedEvents() : List<Event>
 
     @Query("SELECT * FROM liked_event")
-    fun getLikedEventsInObservable() : Observable<List<Event>>
+    fun getUserLikedEventsAsObservable() : Observable<List<Event>>
 
     @Query("DELETE FROM liked_event")
     suspend fun nukeLikedEventsTable()
-
-    @Query("DELETE FROM liked_event WHERE id is 2")
-    suspend fun deleteLikedEvent()
-
-    @Query("SELECT id FROM liked_event")
-    fun getLikedEventsIds() : Observable<List<String>>
 
 }
