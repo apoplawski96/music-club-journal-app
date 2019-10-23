@@ -16,24 +16,28 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
 
     val TAG = "UpcomingEventsViewModel"
 
-    private var upcomingEventsWithUserData = MediatorLiveData<List<Event>>()
+    private var upcomingEventsOutputData = MediatorLiveData<List<Event>>()
+    private var remoteFetchedEventsTempList = MutableLiveData<List<Event>>()
+    private var localUserLikedEventsTempList = MutableLiveData<List<Event>>()
 
     fun observeOnData(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
 
-        upcomingEventsWithUserData.observe(owner, observer)
+        upcomingEventsOutputData.observe(owner, observer)
 
         // Fetching data from Firebase db
-        upcomingEventsWithUserData.addSource(firestoreRepository.getAllEvents()) { fetchedEvents ->
-            if (fetchedEvents != null){
-                upcomingEventsWithUserData.value = fetchedEvents
+        upcomingEventsOutputData.addSource(firestoreRepository.getAllEvents()) { remoteFetchedEvents ->
+            if (remoteFetchedEvents != null){
+                remoteFetchedEventsTempList.value = remoteFetchedEvents
+                fetchIsLikedValueToRemoteEvents()
             }
         }
 
         // Fetching data from local Room db
         lazy {
-            upcomingEventsWithUserData.addSource(appRepository.getUserLikedEventsAsLiveData()) { userLikedEvents ->
-                if (userLikedEvents != null){
-                    val remoteFetchedEvents = upcomingEventsWithUserData.value
+            upcomingEventsOutputData.addSource(appRepository.getUserLikedEventsAsLiveData()) { localUserLikedEvents ->
+                if (localUserLikedEvents != null){
+                    localUserLikedEventsTempList.value = localUserLikedEvents
+                    fetchIsLikedValueToRemoteEvents()
                 }
             }
         }
@@ -43,8 +47,7 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         appRepository.addLikedEvent(event)
     }
 
-    fun fetchIsLikedValueToRemoteEvents(){
-
+    private fun fetchIsLikedValueToRemoteEvents(){
+        upcomingEventsOutputData.postValue(remoteFetchedEventsTempList.value)
     }
-
 }
