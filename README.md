@@ -15,7 +15,9 @@
   MVVM •
   Firebase Cloud Firestore •
   LiveData •
-  Kodein
+  Kodein •
+  Room •
+  RxJava2
 </h3></p>
 <p align="center"> • This is an app made for "STK47 - Warehouse", a music club in Kraków, Poland.
 It's purpose is to store clubs' upcoming events, past events, artists that played there, and to present it in nice way,
