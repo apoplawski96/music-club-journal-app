@@ -21,7 +21,13 @@ data class Event(
     @SerializedName("is_past")
     val isPast : Boolean = false,
     @SerializedName("is_liked")
-    var isLiked : Boolean = false
+    var isLiked : Boolean = false,
+    @SerializedName("event_image_url")
+    val eventImageUrl : String = "",
+    @SerializedName("description")
+    val description : String = "",
+    @SerializedName("ticket_price")
+    val ticketPrice : String = ""
 )
 
 /*data class Event(val id : String? = null,

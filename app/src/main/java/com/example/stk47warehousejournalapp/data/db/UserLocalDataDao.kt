@@ -17,6 +17,9 @@ interface UserLocalDataDao {
     @Query("SELECT * FROM liked_event")
     fun getUserLikedEventsAsObservable() : Observable<List<Event>>
 
+    @Query("SELECT * FROM liked_event WHERE id LIKE :id")
+    fun getEventById(id : String) : Event
+
     @Delete
     fun deleteLikedEvent(event: Event)
 
