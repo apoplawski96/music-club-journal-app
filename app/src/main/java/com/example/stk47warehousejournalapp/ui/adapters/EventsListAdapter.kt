@@ -3,6 +3,7 @@ package com.example.stk47warehousejournalapp.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stk47warehousejournalapp.R
 import com.example.stk47warehousejournalapp.data.model.Event
@@ -38,8 +39,13 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
     }
 
     fun setItems(data: List<Event>) {
+        val oldList = eventsList.toList()
+        val diffResult : DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            EventItemDiffCallback(oldList, data)
+        )
+        eventsList.clear()
         eventsList.addAll(data)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class ViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -54,6 +60,27 @@ class EventsListAdapter (private var eventsList : MutableList<Event>, private va
             // Setting up proper heart icon
             if (eventItem.isLiked) itemView.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_full)
             else itemView.heartIcon_imageView.setImageResource(R.mipmap.ic_heart_empty)
+        }
+    }
+
+    class EventItemDiffCallback(
+        var oldEventsList : List<Event>,
+        var newEventsList : List<Event>
+    ) : DiffUtil.Callback(){
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return (oldEventsList[oldItemPosition].id == newEventsList[newItemPosition].id)
+        }
+
+        override fun getOldListSize(): Int {
+            return oldEventsList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newEventsList.size
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return (oldEventsList[oldItemPosition] == (newEventsList[newItemPosition]))
         }
     }
 }

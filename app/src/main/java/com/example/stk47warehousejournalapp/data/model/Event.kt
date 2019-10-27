@@ -30,6 +30,7 @@ data class Event(
     val ticketPrice : String = ""
 )
 
+
 /*data class Event(val id : String? = null,
                  val title : String,
                  val description : String,

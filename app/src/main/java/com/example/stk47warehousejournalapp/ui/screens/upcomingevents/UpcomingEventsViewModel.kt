@@ -17,8 +17,8 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
     val TAG = "UpcomingEventsViewModel"
 
     private var upcomingEventsOutputData = MediatorLiveData<List<Event>>()
-    private var remoteFetchedEventsTempList = MutableLiveData<List<Event>>()
-    private var localUserLikedEventsTempList = MutableLiveData<List<Event>>()
+    var remoteFetchedEventsTempList = MutableLiveData<List<Event>>()
+    var localUserLikedEventsTempList = MutableLiveData<List<Event>>()
 
     fun addLikedEvent(event : Event){
         Log.d(TAG, "Event added to local db")
@@ -30,12 +30,20 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         appRepository.deleteLikedEvent(event)
     }
 
-    fun observeOnData(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
+    fun fetchUpcomingEvents() : LiveData<List<Event>>{
+        return  firestoreRepository.getAllEvents()
+    }
+
+    fun fetchLikedEvents() : LiveData<List<Event>>{
+        return  appRepository.getUserLikedEventsAsLiveData()
+    }
+
+    fun observeOnEvents(owner : LifecycleOwner, observer : Observer<List<Event>>) = viewModelScope.launch{
         Log.d(TAG, "observeOnData() function called")
         upcomingEventsOutputData.observe(owner, observer)
 
         // Fetching data from Firebase db
-        upcomingEventsOutputData.addSource(firestoreRepository.getAllEvents()) { remoteFetchedEvents ->
+        upcomingEventsOutputData.addSource(fetchUpcomingEvents()) { remoteFetchedEvents ->
             if (remoteFetchedEvents != null){
                 Log.d(TAG, "Remote events fetched")
                 remoteFetchedEventsTempList.value = remoteFetchedEvents
@@ -44,7 +52,7 @@ class UpcomingEventsViewModel(private val appRepository: AppRepository, private 
         }
 
         // Fetching data from local Room db
-        upcomingEventsOutputData.addSource(appRepository.getUserLikedEventsAsLiveData()) { localUserLikedEvents ->
+        upcomingEventsOutputData.addSource(fetchLikedEvents()) { localUserLikedEvents ->
             if (localUserLikedEvents != null){
                 Log.d(TAG, "Local events fetched")
                 localUserLikedEventsTempList.value = localUserLikedEvents

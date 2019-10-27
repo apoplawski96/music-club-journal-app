@@ -69,7 +69,7 @@ class UpcomingEventsFragment : BaseFragment(), KodeinAware, EventsListAdapter.IO
     }
 
     private fun fetchUpcomingEvents() {
-        viewModel.observeOnData(this, Observer { fetchedEvents ->
+        viewModel.observeOnEvents(this, Observer { fetchedEvents ->
             if (fetchedEvents == null) return@Observer
             upcomingEvents = fetchedEvents
             adapter!!.setItems(upcomingEvents!!)

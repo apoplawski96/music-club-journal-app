@@ -8,7 +8,7 @@ import com.example.stk47warehousejournalapp.data.model.Event
 
 @Database(
     entities = [Event::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class UserLocalData : RoomDatabase(){
