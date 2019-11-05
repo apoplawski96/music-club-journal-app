@@ -1,6 +1,6 @@
 <a href="https://github.com/apoplawski96/projects-summary/blob/master/assets/header.png"><img src="https://github.com/apoplawski96/projects-summary/blob/master/assets/header.png"></a>
 
-<h1 align="center">DAZN - Code Challenge App</h4>
+<h1 align="center">Music Club Journal App</h4>
 
 <p align="center">
   <a href="#technology-and-requirements">Technology and Requirements</a> •
